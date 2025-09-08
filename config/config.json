@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "Edl@2023$",
+    "database": "students",
+    "host": "192.168.20.76",
+    "dialect": "postgres",
+    "port":"5432"
+  },
+  "test": {
+    "username": "root",
+    "password": "password123",
+    "database": "students",
+    "host": "localhost",
+    "dialect": "mysql",
+    "port":"3306"
+  },
+
+  "production": {
+    "username": "postgres",
+    "password": "Edl@2023$",
+    "database": "students",
+    "host": "192.168.20.76",
+    "dialect": "postgres",
+    "port":"5432"
+  }
+}
