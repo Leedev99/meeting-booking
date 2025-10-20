@@ -20,6 +20,6 @@ module.exports = (sequelize, DataTypes) => {
   Category.associate = function (models) {
     // define association here
   };
-  sequelize.sync();
+  // sequelize.sync();
   return Category;
 };

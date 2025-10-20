@@ -34,8 +34,7 @@ exports.userbyid = async (req, res, next) => {
 // Insert data
 exports.insert = async (req, res, next) => {
   try {
-    const { title, detail } = req.body;
-
+    const { title, detail, image } = req.body;
     // check duplicate email
     const existEmail = await models.Course.findOne({
       where: { title: title },
@@ -49,6 +48,7 @@ exports.insert = async (req, res, next) => {
     const dataCourse = await models.Course.create({
       title,
       detail,
+      image,
     });
     res.status(201).json({
       message: "success inserted",
@@ -56,6 +56,7 @@ exports.insert = async (req, res, next) => {
         id: dataCourse.id,
         title: dataCourse.title,
         detail: dataCourse.detail,
+        image: dataCourse.image,
       },
     });
   } catch (error) {
@@ -68,7 +69,7 @@ exports.insert = async (req, res, next) => {
 // Update data
 exports.update = async (req, res, next) => {
   try {
-    const { id, title, detail } = req.body;
+    const { id, title, detail, image } = req.body;
 
     // Convert both IDs to strings for comparison (in case one is number, one is string)
     if (String(req.params.id) !== String(id)) {
@@ -105,6 +106,7 @@ exports.update = async (req, res, next) => {
         title,
         detail,
         updated_at: new Date(), // Fixed: use new Date() instead of Date.UTC.NOW()
+        image,
       },
       {
         where: {
@@ -123,6 +125,7 @@ exports.update = async (req, res, next) => {
         id: updatedCourse.id,
         course: updatedCourse.course,
         detail: updatedCourse.detail,
+        image: updatedCourse.image,
       },
     });
   } catch (error) {

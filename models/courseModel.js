@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       title: DataTypes.STRING,
       detail: DataTypes.STRING,
-      image: DataTypes.STRING,
+      image: DataTypes.TEXT,
       created_at: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
@@ -23,6 +23,6 @@ module.exports = (sequelize, DataTypes) => {
   Course.associate = function (models) {
     // define association here
   };
-  sequelize.sync();
+  // sequelize.sync();
   return Course;
 };
