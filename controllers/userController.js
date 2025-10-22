@@ -197,3 +197,45 @@ exports.login = async (req, res, next) => {
     return res.status(500).send(error);
   }
 };
+
+exports.updatePassword = async (req, res) => {
+  try {
+    const { id, password } = req.body;
+
+    // Validate user ID
+    if (parseInt(req.params.id) !== id) {
+      const error = new Error("ລະຫັດຜູ້ໃຊ້ບໍ່ຖືກຕ້ອງ");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    // Hash new password
+    const salt = await bcryptjs.genSalt(8);
+    const passwordHash = await bcryptjs.hash(password, salt);
+
+    // Update only password field
+    const [updated] = await models.User.update(
+      { password: passwordHash },
+      {
+        where: { id },
+      }
+    );
+
+    if (!updated) {
+      return res.status(404).json({
+        message: "ບໍ່ພົບຜູ້ໃຊ້",
+        data: [],
+      });
+    }
+
+    res.status(200).json({
+      message: "ປ່ຽນລະຫັດຜ່ານສຳເລັດ",
+      data: { id },
+    });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({
+      message: error.message || "Server error",
+      data: [],
+    });
+  }
+};

@@ -7,6 +7,7 @@ router.get("/", authMiddleware, usersController.index);
 router.get("/:id", authMiddleware, usersController.userbyid);
 router.post("/", usersController.insert);
 router.put("/:id", authMiddleware, usersController.update);
+router.put("/changepass/:id", authMiddleware, usersController.updatePassword);
 router.delete("/:id", authMiddleware, usersController.destroy);
 
 // authen
