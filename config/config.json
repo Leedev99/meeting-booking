@@ -17,10 +17,10 @@
   },
 
   "production": {
-    "username": "postgres",
-    "password": "Edl@2023$",
-    "database": "students",
-    "host": "192.168.20.76",
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
     "dialect": "postgres",
     "port":"5432"
   }

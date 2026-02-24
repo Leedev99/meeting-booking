@@ -171,7 +171,7 @@ exports.login = async (req, res, next) => {
           .send({ message: "Password is incorrect", success: false });
       } else {
         const JWT_SECRET = process.env.JWT_SECRET;
-        console.log("JWT_SECRET", JWT_SECRET);
+        // console.log("JWT_SECRET", JWT_SECRET);
 
         const token = jwt.sign(
           { id: user.id, username: user.name },
